@@ -57,10 +57,10 @@
         </div>
         <!-- Tabs -->
 
-        <div class="tabs tabs-boxed mb-6">
-            <button class="tab tab-active" data-tab="all">All</button>
-            <button class="tab" data-tab="interview">Interview</button>
-            <button class="tab" data-tab="rejected">Rejected</button>
+        <div class="tabs tabs-boxed bg-transparent gap-3 mb-6">
+            <button class="tab job-tab bg-blue-600 text-white rounded-md px-6" data-tab="all">All</button>
+            <button class="tab job-tab bg-red-200 text-gray-600 rounded-md px-6" data-tab="interview">Interview</button>
+            <button class="tab job-tab bg-green-200 text-gray-600 rounded-md px-6 " data-tab="rejected">Rejected</button>
         </div>
         <!-- Jobs Grid -->
         <div id="jobList" class="grid grid-cols-1 gap-6"></div>
@@ -79,6 +79,9 @@
                     <p class="font-medium position"></p>
                     <p class="text-sm text-gray-500 meta"></p>
                     <p class="text-sm font-semibold salary"></p>
+                    <button class="btn btn-ghost btn-sm notAppliedBtn text-info w-40">
+                    NOT APPLIED
+                    </button>
                     <p class="text-sm mt-2 description"></p>
 
                     <div class="flex flex-wrap gap-2 mt-4">

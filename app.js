@@ -3,8 +3,8 @@
 let jobs = [
   {
     id: 1,
-    companyName: "Google",
-    position: "Frontend Engineer",
+    companyName: "Mobile First Corp",
+    position: "React Native Developer",
     location: "California, USA",
     type: "Full-time",
     salary: "$120,000 - $150,000",
