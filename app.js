@@ -83,3 +83,83 @@ let jobs = [
   }
 ];
 
+let currentTab = "all";
+
+const jobList = document.getElementById("jobList");
+const template = document.getElementById("jobCardTemplate");
+const emptyState = document.getElementById("emptyState");
+
+function renderJobs() {
+  jobList.innerHTML = "";
+
+  const filtered =
+    currentTab === "all"
+      ? jobs
+      : jobs.filter(job => job.status === currentTab);
+
+  document.getElementById("sectionCount").textContent =
+    `${filtered.length} jobs`;
+
+  if (filtered.length === 0) {
+    emptyState.classList.remove("hidden");
+  } else {
+    emptyState.classList.add("hidden");
+
+    filtered.forEach(job => {
+      const clone = template.content.cloneNode(true);
+
+      clone.querySelector(".company").textContent = job.companyName;
+      clone.querySelector(".position").textContent = job.position;
+      clone.querySelector(".meta").textContent =
+        `${job.location} • ${job.type}`;
+      clone.querySelector(".salary").textContent = job.salary;
+      clone.querySelector(".description").textContent = job.description;
+
+      clone.querySelector(".interviewBtn")
+        .addEventListener("click", () => setStatus(job.id, "interview"));
+
+      clone.querySelector(".rejectedBtn")
+        .addEventListener("click", () => setStatus(job.id, "rejected"));
+
+      clone.querySelector(".deleteBtn")
+        .addEventListener("click", () => deleteJob(job.id));
+
+      jobList.appendChild(clone);
+    });
+  }
+
+  updateDashboard();
+}
+
+function setStatus(id, status) {
+  const job = jobs.find(j => j.id === id);
+  job.status = status;
+  renderJobs();
+}
+
+function deleteJob(id) {
+  jobs = jobs.filter(job => job.id !== id);
+  renderJobs();
+}
+
+function updateDashboard() {
+  document.getElementById("totalCount").textContent = jobs.length;
+  document.getElementById("interviewCount").textContent =
+    jobs.filter(j => j.status === "interview").length;
+  document.getElementById("rejectedCount").textContent =
+    jobs.filter(j => j.status === "rejected").length;
+}
+
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(t =>
+      t.classList.remove("tab-active")
+    );
+    tab.classList.add("tab-active");
+
+    currentTab = tab.dataset.tab;
+    renderJobs();
+  });
+});
+
+renderJobs();

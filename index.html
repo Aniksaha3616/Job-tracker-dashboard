@@ -65,16 +65,45 @@
         <!-- Jobs Grid -->
         <div id="jobList" class="grid grid-cols-1 gap-6"></div>
         <!-- Empty box -->
-        <div id="emptyState" class="hidden text-center py-16">
-        <div class="text-6xl mb-4"><img src="./asset/jobs.png" alt=""></div>
-        <h3 class="text-xl font-semibold">No jobs available</h3>
-        <p class="text-gray-500">Select another tab or add new opportunities.</p>
+        <div id="emptyState" class="hidden text-center mx-auto py-16">
+            <div class="text-6xl mb-4  "><img src="./asset/jobs.png"></div>
+            <h3 class="text-xl font-semibold">No jobs available</h3>
+            <p class="text-gray-500">Select another tab or add new opportunities.</p>
+        </div>
 
+        <!-- job templete -->
+        <template id="jobCardTemplate">
+            <div class="card bg-base-100 shadow">
+                <div class="card-body">
+                    <h2 class="card-title company"></h2>
+                    <p class="font-medium position"></p>
+                    <p class="text-sm text-gray-500 meta"></p>
+                    <p class="text-sm font-semibold salary"></p>
+                    <p class="text-sm mt-2 description"></p>
 
-        
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="btn interviewBtn
+                            px-3 py-1 text-xs font-semibold rounded
+                            border border-success text-success
+                            hover:bg-success hover:text-white
+                            transition duration-200">Interview</button>
+                        <button class="btn rejectedBtn
+                            px-3 py-1 text-xs font-semibold rounded
+                            border border-error text-error
+                            hover:bg-error hover:text-white
+                            ransition duration-200                  ">Rejected</button>
+                        <button class="btn deleteBtn
+                    px-3 py-1 text-xs font-semibold rounded
+                    border border-gray-400 text-gray-600
+                    hover:bg-gray-500 hover:text-white
+                    transition duration-200">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </template>
   </div>
 
-    </div>
+    
 
 
     <script src="./app.js"></script>
